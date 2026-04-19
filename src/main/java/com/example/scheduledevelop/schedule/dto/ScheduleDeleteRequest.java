@@ -3,9 +3,6 @@ package com.example.scheduledevelop.schedule.dto;
 import lombok.Getter;
 
 @Getter
-public class ScheduleUpdateRequest {
+public class ScheduleDeleteRequest {
     private Long userid;
-    private String title;
-    private String content;
-
 }

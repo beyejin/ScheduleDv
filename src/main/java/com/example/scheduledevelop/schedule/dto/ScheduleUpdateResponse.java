@@ -17,14 +17,24 @@ public class ScheduleUpdateResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public static ScheduleUpdateResponse from(Schedule schedule) {
+    private ScheduleUpdateResponse(Long id, String username, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        this.id = id;
+        this.username = username;
+        this.title = title;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+    }
+
+        public static ScheduleUpdateResponse from(Schedule schedule) {
         return new ScheduleUpdateResponse(
                 schedule.getId(),
-                schedule.getUsername(),
+                schedule.getUser().getUsername(),
                 schedule.getTitle(),
                 schedule.getContent(),
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()
         );
     }
+
 }
