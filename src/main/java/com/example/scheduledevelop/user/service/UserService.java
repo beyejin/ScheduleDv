@@ -20,12 +20,17 @@ public class UserService {
     // 저장
     @Transactional
     public UserCreateResponse save(UserCreateRequest request) {
+
+        if(request.getPassword().length()<8){
+        throw new IllegalStateException("비밀번호는 8글자 이상이어야 합니다");
+        }
         User user = new User(
                 request.getUsername(),
                 request.getEmail(),
                 request.getPassword()
         );
         User saveUser = userRepository.save(user);
+
 
         return UserCreateResponse.from(saveUser);
     }

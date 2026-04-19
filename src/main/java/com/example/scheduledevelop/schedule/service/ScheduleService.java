@@ -5,6 +5,7 @@ import com.example.scheduledevelop.schedule.entity.Schedule;
 import com.example.scheduledevelop.schedule.repository.ScheduleRepository;
 import com.example.scheduledevelop.user.entity.User;
 import com.example.scheduledevelop.user.repository.UserRepository;
+import com.example.scheduledevelop.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +18,12 @@ public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository; //레파지토리 가져옴
     private final UserRepository userRepository;
+    private final UserService userService;
 
     // 저장
     @Transactional
     public ScheduleCreateResponse save(ScheduleCreateRequest request) {
+
         User savedUser = userRepository.findById(request.getUserid()).orElseThrow(
                 () -> new IllegalStateException("존재하지 않는 유저입니다.")
         );
