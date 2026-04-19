@@ -27,7 +27,7 @@ public class ScheduleGetResponse {
     public static ScheduleGetResponse from (Schedule schedule) {
         return new ScheduleGetResponse(
                 schedule.getId(),
-                schedule.getUsername(),
+                schedule.getUser().getUsername(),
                 schedule.getTitle(),
                 schedule.getContent(),
                 schedule.getCreatedAt(),

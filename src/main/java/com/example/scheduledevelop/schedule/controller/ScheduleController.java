@@ -26,7 +26,7 @@ public class ScheduleController {
 
     // 다 건 조회
     @GetMapping
-    public ResponseEntity <List<ScheduleGetResponse>>getAll(){
+    public ResponseEntity<List<ScheduleGetResponse>> getAll() {
         return ResponseEntity.status(HttpStatus.OK).body(scheduleService.findAll());
     }
 
@@ -41,15 +41,15 @@ public class ScheduleController {
     @PatchMapping("/{scheduleId}")
     public ResponseEntity<ScheduleUpdateResponse> Update(
             @PathVariable Long scheduleId, @RequestBody ScheduleUpdateRequest request
-    ){
-        ScheduleUpdateResponse result = scheduleService.update(scheduleId,request);
+    ) {
+        ScheduleUpdateResponse result = scheduleService.update(scheduleId, request);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     // 삭제
     @DeleteMapping("/{scheduleId}")
-    public ResponseEntity<Void> deletAll(@PathVariable Long scheduleId){
-        scheduleService.delete(scheduleId);
+    public ResponseEntity<Void> deletAll(@PathVariable Long scheduleId, @RequestBody ScheduleDeleteRequest request) {
+        scheduleService.delete(scheduleId, request);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

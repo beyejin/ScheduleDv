@@ -30,7 +30,7 @@ public class ScheduleCreateResponse {
     public static ScheduleCreateResponse from(Schedule schedule) {
         return new ScheduleCreateResponse(
                 schedule.getId(),
-                schedule.getUsername(),
+                schedule.getUser().getUsername(),
                 schedule.getTitle(),
                 schedule.getContent(),
                 schedule.getCreatedAt(),
