@@ -28,8 +28,8 @@ public class User extends Base {
     }
 
     public void update(UserUpdateRequest request) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
+        this.username = request.getUsername();
+        this.email = request.getEmail();
+        this.password = request.getPassword();
     }
 }
