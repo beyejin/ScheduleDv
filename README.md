@@ -58,3 +58,155 @@ Lv3. 회원가입
 User 엔티티에 password 필드 추가
 회원가입 시 비밀번호 저장
 비밀번호가 8자 미만일 경우 if문으로 예외 처리
+
+
+
+## 📑 API 명세서
+
+<details>
+<summary>👤 유저 API</summary>
+
+내용 작성
+
+<details>
+<summary>📌 일정 API</summary>
+
+# Schedule API
+
+## Domain
+
+```text
+http://localhost:8080
+````
+
+---
+
+## 일정 생성 API
+
+### URL
+
+```text
+/schedules
+```
+
+### Method
+
+```text
+POST
+```
+
+---
+
+## 1. 설명
+
+새로운 일정을 등록합니다.
+
+---
+
+## 2. 요청 (Request)
+
+### a. Parameter & Query String
+
+없음
+
+| 이름 | 데이터 타입 | 설명 |
+| -- | ------ | -- |
+| 없음 | -      | -  |
+
+---
+
+### b. Request Headers
+
+없음
+
+| 이름 | 데이터 타입 | 설명 |
+| -- | ------ | -- |
+| 없음 | -      | -  |
+
+---
+
+### c. Request Body
+
+```json
+{
+  "title": "일정이름",
+  "content": "일정 내용"
+}
+```
+
+| 이름      | 데이터 타입 | 설명    |
+| ------- | ------ | ----- |
+| title   | String | 일정 이름 |
+| content | String | 일정 내용 |
+
+---
+
+## 3. 응답 (Response)
+
+### a. Response Headers
+
+없음
+
+| 이름 | 데이터 타입 | 설명 |
+| -- | ------ | -- |
+| 없음 | -      | -  |
+
+---
+
+### b. Response Body
+
+### 성공 응답 : `201 Created`
+
+```json
+{
+  "scheduleId": 1,
+  "userId": 1,
+  "title": "일정이름",
+  "content": "일정 내용",
+  "username": "홍길동",
+  "createdAt": "2026-03-11T00:00:00.000Z",
+  "modifiedAt": "2026-04-11T00:00:00.000Z"
+}
+```
+
+| 이름         | 데이터 타입        | 설명    |
+| ---------- | ------------- | ----- |
+| scheduleId | Long          | 일정 ID |
+| userId     | Long          | 유저 ID |
+| title      | String        | 일정 이름 |
+| content    | String        | 일정 내용 |
+| username   | String        | 작성자   |
+| createdAt  | LocalDateTime | 생성 일시 |
+| modifiedAt | LocalDateTime | 수정 일시 |
+
+</details>
+```
+
+내용 2
+
+</details>
+
+<details>
+<summary>🔐 인증 API</summary>
+
+내용 작성
+
+</details>
+
+<details>
+<summary>📅 일정 API</summary>
+
+내용 작성
+
+</details>
+
+<details>
+<summary>💬 댓글 API</summary>
+
+내용 작성
+
+</details>
+
+
+
+

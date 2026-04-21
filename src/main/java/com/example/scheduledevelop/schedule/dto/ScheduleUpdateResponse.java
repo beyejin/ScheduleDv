@@ -2,12 +2,10 @@ package com.example.scheduledevelop.schedule.dto;
 
 import com.example.scheduledevelop.schedule.entity.Schedule;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
-@RequiredArgsConstructor
 public class ScheduleUpdateResponse {
 
     private final Long id;

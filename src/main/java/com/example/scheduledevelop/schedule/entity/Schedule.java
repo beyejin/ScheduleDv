@@ -31,7 +31,7 @@ public class Schedule extends Base {
     }
 
     public void update(ScheduleUpdateRequest request) {
-        this.title = title;
-        this.content = content;
+        this.title = request.getTitle();
+        this.content = request.getContent();
     }
 }
