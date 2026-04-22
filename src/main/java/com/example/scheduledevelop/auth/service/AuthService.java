@@ -13,15 +13,16 @@ public class AuthService {
     
     private final UserRepository userRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public User login(LoginRequest request) {
-        User loginUser = userRepository.findByEmail(request.getEmail()).orElseThrow(
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
                         () -> new IllegalStateException("존재하지 않는 유저입니다."));
 
-        if (!loginUser.getPassword().equals(request.getPassword())) {
+        if (!user.getPassword().equals(request.getPassword())) {
             throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
         }
-        return loginUser;
+
+        return user;
     }
 
 }

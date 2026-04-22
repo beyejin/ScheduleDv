@@ -17,21 +17,22 @@ public class UserService {
     private final UserRepository userRepository;
 
 
-    // 저장
+    // 저장 회원가입
     @Transactional
     public UserCreateResponse save(UserCreateRequest request) {
 
-        if(request.getPassword().length()<8){
-        throw new IllegalStateException("비밀번호는 8글자 이상이어야 합니다");
+        //로그인상태이면 유저 생성 안될 수 있도록
+
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new IllegalStateException("이미 사용 중인 이메일입니다.");
         }
+
         User user = new User(
                 request.getUsername(),
                 request.getEmail(),
                 request.getPassword()
         );
         User saveUser = userRepository.save(user);
-
-
         return UserCreateResponse.from(saveUser);
     }
 
@@ -59,23 +60,29 @@ public class UserService {
                 () -> new IllegalStateException("존재하지 않는 유저입니다.")
         );
 
-        if(!sessionValue.getUserId().equals(userId)){
+        if (!sessionValue.getUserId().equals(userId)) {
             throw new IllegalStateException("본인 정보만 수정 가능합니다.");
         }
-
+        if (request.getPassword().length() < 8) {
+            throw new IllegalStateException("비밀번호는 8글자 이상이어야 합니다");
+        }
         updatedUser.update(request);
         return UserUpdateResponse.from(updatedUser);
     }
 
     // 삭제
+    @Transactional
     public void delete(Long userId, SessionValue sessionValue) {
 
         User deletedUser = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalStateException("존재하지 않는 유저입니다.")
         );
-        if(!sessionValue.getUserId().equals(userId)){
+        if (!sessionValue.getUserId().equals(userId)) {
             throw new IllegalStateException("본인만 삭제 가능합니다.");
         }
+
+        //로그아웃
+
         userRepository.delete(deletedUser);
 
     }

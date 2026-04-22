@@ -80,15 +80,15 @@ public class ScheduleService {
     @Transactional
     public ScheduleUpdateResponse update(Long scheduleId, ScheduleUpdateRequest request, SessionValue sessionValue) {
 
-        Schedule updatedSchedule = scheduleRepository.findById(scheduleId).orElseThrow(
+        Schedule foundSchedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalStateException("존재하지 않는 일정입니다.")
         );
 
-        if (!updatedSchedule.getUser().getId().equals(sessionValue.getUserId())) {
+        if (!foundSchedule.getUser().getId().equals(sessionValue.getUserId())) {
             throw new IllegalStateException("작성한 유저만 수정할 수 있습니다.");
         }
-        updatedSchedule.update(request);
-        return ScheduleUpdateResponse.from(updatedSchedule);
+        foundSchedule.update(request);
+        return ScheduleUpdateResponse.from(foundSchedule);
     }
 
     // 삭제

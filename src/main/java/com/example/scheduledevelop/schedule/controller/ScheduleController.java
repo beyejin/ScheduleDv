@@ -1,20 +1,20 @@
 package com.example.scheduledevelop.schedule.controller;
 
-import com.example.scheduledevelop.basic.controller.BaseController;
+import com.example.scheduledevelop.basic.SessionValue;
 import com.example.scheduledevelop.schedule.dto.*;
 import com.example.scheduledevelop.schedule.service.ScheduleService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/schedules")
-public class ScheduleController extends BaseController {
+public class ScheduleController {
 
     private final ScheduleService scheduleService;
 
@@ -29,8 +29,13 @@ public class ScheduleController extends BaseController {
      */
     @PostMapping
     public ResponseEntity<ScheduleCreateResponse> createSchedule(
-            @RequestBody ScheduleCreateRequest request , HttpSession httpSession) {
-        ScheduleCreateResponse result = scheduleService.save(request,checkSession(httpSession));
+            @Valid @RequestBody ScheduleCreateRequest request,
+            @SessionAttribute(name = "sessionId", required = false) SessionValue sessionValue) {
+        if (sessionValue == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "로그인이 필요한 작업입니다.");
+        }
+
+        ScheduleCreateResponse result = scheduleService.save(request, sessionValue);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
@@ -59,16 +64,26 @@ public class ScheduleController extends BaseController {
     // 수정
     @PatchMapping("/{scheduleId}")
     public ResponseEntity<ScheduleUpdateResponse> Update(
-            @PathVariable Long scheduleId, @RequestBody ScheduleUpdateRequest request,HttpSession httpSession
+            @PathVariable Long scheduleId, @Valid @RequestBody ScheduleUpdateRequest request,
+            @SessionAttribute(name = "sessionId", required = false) SessionValue sessionValue
     ) {
-        ScheduleUpdateResponse result = scheduleService.update(scheduleId, request,checkSession(httpSession));
+        if (sessionValue == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "로그인이 필요한 작업입니다.");
+        }
+
+        ScheduleUpdateResponse result = scheduleService.update(scheduleId, request, sessionValue);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     // 삭제
     @DeleteMapping("/{scheduleId}")
-    public ResponseEntity<Void> deletAll(@PathVariable Long scheduleId,HttpSession httpSession) {
-        scheduleService.delete(scheduleId,checkSession(httpSession));
+    public ResponseEntity<Void> deletAll(@PathVariable Long scheduleId,
+                                         @SessionAttribute(name = "sessionId", required = false) SessionValue sessionValue) {
+        if (sessionValue == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "로그인이 필요한 작업입니다.");
+        }
+
+        scheduleService.delete(scheduleId, sessionValue);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

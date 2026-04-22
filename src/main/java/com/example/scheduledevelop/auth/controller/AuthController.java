@@ -4,7 +4,6 @@ import com.example.scheduledevelop.auth.dto.LoginRequest;
 import com.example.scheduledevelop.auth.dto.LoginResponse;
 import com.example.scheduledevelop.auth.service.AuthService;
 import com.example.scheduledevelop.basic.SessionValue;
-import com.example.scheduledevelop.basic.controller.BaseController;
 import com.example.scheduledevelop.user.entity.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class AuthController extends BaseController {
+public class AuthController {
 
     private final AuthService authService;
 
@@ -27,6 +26,7 @@ public class AuthController extends BaseController {
         SessionValue sessionValue = new SessionValue(loginUser.getId(), loginUser.getUsername());
         session.setAttribute("sessionId", sessionValue);// 키 벨류 세팅 세션을?
         return ResponseEntity.status(HttpStatus.OK).body(LoginResponse.from(loginUser));
+
     }
 
     //로그아웃
@@ -40,8 +40,6 @@ public class AuthController extends BaseController {
         session.invalidate();
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
-
 
 
 }
