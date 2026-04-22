@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class ScheduleUpdateRequest {
-    private Long userid;
     private String title;
     private String content;
 
