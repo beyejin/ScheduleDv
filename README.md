@@ -103,8 +103,15 @@ src/main/java/com/example/scheduledevelop
 
 ---
 
+### 👤 유저 API
+
 <details>
-<summary>유저 API</summary>
+<summary>유저 API 명세 보기</summary>
+
+<br>
+
+<details>
+<summary>생성 API</summary>
 
 ## 1. 유저 생성 API
 
@@ -163,6 +170,13 @@ src/main/java/com/example/scheduledevelop
 
 ---
 
+</details>
+
+<br>
+
+<details>
+<summary>전체 조회 API</summary>
+
 ## 2. 유저 전체 조회 API
 
 | 항목 | 내용 |
@@ -199,6 +213,13 @@ src/main/java/com/example/scheduledevelop
 | - | - | 별도 실패 응답 없음 |
 
 ---
+
+</details>
+
+<br>
+
+<details>
+<summary>단건 조회 API</summary>
 
 ## 3. 유저 단건 조회 API
 
@@ -240,6 +261,13 @@ src/main/java/com/example/scheduledevelop
 | `404 Not Found` | `존재하지 않는 유저입니다.` | 해당 ID의 유저가 존재하지 않는 경우 |
 
 ---
+
+</details>
+
+<br>
+
+<details>
+<summary>수정 API</summary>
 
 ## 4. 유저 수정 API
 
@@ -307,6 +335,13 @@ src/main/java/com/example/scheduledevelop
 
 ---
 
+</details>
+
+<br>
+
+<details>
+<summary>삭제 API</summary>
+
 ## 5. 유저 삭제 API
 
 | 항목 | 내용 |
@@ -344,10 +379,19 @@ src/main/java/com/example/scheduledevelop
 
 </details>
 
+</details>
+
 ---
 
+### 🔐 인증 API
+
 <details>
-<summary>인증 API</summary>
+<summary>인증 API 명세 보기</summary>
+
+<br>
+
+<details>
+<summary>로그인 API</summary>
 
 ## 1. 로그인 API
 
@@ -410,6 +454,13 @@ src/main/java/com/example/scheduledevelop
 
 ---
 
+</details>
+
+<br>
+
+<details>
+<summary>로그아웃 API</summary>
+
 ## 2. 로그아웃 API
 
 | 항목 | 내용 |
@@ -439,10 +490,19 @@ src/main/java/com/example/scheduledevelop
 
 </details>
 
+</details>
+
 ---
 
+### 📅 일정 API
+
 <details>
-<summary>일정 API</summary>
+<summary>일정 API 명세 보기</summary>
+
+<br>
+
+<details>
+<summary>생성 API</summary>
 
 ## 1. 일정 생성 API
 
@@ -502,6 +562,13 @@ src/main/java/com/example/scheduledevelop
 
 ---
 
+</details>
+
+<br>
+
+<details>
+<summary>전체 조회 API</summary>
+
 ## 2. 일정 전체 조회 API
 
 | 항목 | 내용 |
@@ -541,6 +608,13 @@ src/main/java/com/example/scheduledevelop
 | - | - | 별도 실패 응답 없음 |
 
 ---
+
+</details>
+
+<br>
+
+<details>
+<summary>단건 조회 API</summary>
 
 ## 3. 일정 단건 조회 API
 
@@ -583,6 +657,13 @@ src/main/java/com/example/scheduledevelop
 | `404 Not Found` | `존재하지 않는 일정입니다.` | 해당 ID의 일정이 존재하지 않는 경우 |
 
 ---
+
+</details>
+
+<br>
+
+<details>
+<summary>수정 API</summary>
 
 ## 4. 일정 수정 API
 
@@ -649,6 +730,13 @@ src/main/java/com/example/scheduledevelop
 
 ---
 
+</details>
+
+<br>
+
+<details>
+<summary>삭제 API</summary>
+
 ## 5. 일정 삭제 API
 
 | 항목 | 내용 |
@@ -683,5 +771,7 @@ src/main/java/com/example/scheduledevelop
 | `401 Unauthorized` | `로그인이 필요한 작업입니다.` | 로그인하지 않은 경우 |
 | `403 Forbidden` | `작성한 유저만 삭제할 수 있습니다.` | 다른 유저의 일정을 삭제하려는 경우 |
 | `404 Not Found` | `존재하지 않는 일정입니다.` | 삭제할 일정이 존재하지 않는 경우 |
+
+</details>
 
 </details>
