@@ -62,7 +62,9 @@ public class UserService {
         if(!sessionValue.getUserId().equals(userId)){
             throw new IllegalStateException("본인 정보만 수정 가능합니다.");
         }
-
+        if (request.getPassword().length() < 8) {
+            throw new IllegalStateException("비밀번호는 8글자 이상이어야 합니다");
+        }
         updatedUser.update(request);
         return UserUpdateResponse.from(updatedUser);
     }
